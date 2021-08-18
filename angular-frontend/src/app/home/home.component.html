@@ -1,0 +1,46 @@
+
+<style>
+    textarea{
+        width:75%
+    }
+</style>
+    
+<div class="chatcontrol">
+    <div class="text-center"><textarea [ngStyle]="{'margin-left': '8px','margin-right': '15px'}" rows="10"  [(ngModel)]="message"></textarea></div>
+    <!-- <input type="text" name="message" class="form-control chatinput" (keyup.enter)="sendMessage()" [(ngModel)]="message"/> -->
+    <br/>
+    <br/>
+    
+    <div class="text-center"><button type="button" (click)=sendMessage() class="btn btn-primary">Submit</button></div>
+    
+    <div *ngIf="ini">
+    <div *ngIf="(response | json) != '{}'; else elseBlock">
+        
+      
+    
+    <table class="table table-dark">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Entity</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of response | keyvalue">
+                
+                
+                <td [ngStyle]="{'color':'blue'}">{{item.key}}</td>
+                <td  [ngStyle]="{'color':'green'}">{{item.value}}</td>
+
+            </tr>
+        </tbody>
+      </table>
+    </div>  
+    <ng-template #elseBlock>
+        <div><h2>No Entities Found</h2></div>
+    </ng-template>  
+    </div> 
+    
+  </div>
+  
